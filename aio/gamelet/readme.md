@@ -1,1 +1,1 @@
-simple game moving a red ball right and left
+A simple game moving a red ball right and left
