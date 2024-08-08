@@ -12,3 +12,10 @@ A random number guessing game using the do...while loop
     ```
 
 2. The system will run automatically until it reaches the designated number and will output how many tries it took to get to it.
+
+````html
+`
+<h2>I guessed it!</h2>
+<p>It only took me ${guessNumber} guesses!</p>
+`; ```
+````
