@@ -10,3 +10,5 @@ A random number guessing game using the do...while loop
     <div id="root">@</div>
     <script src="root.js"></script>
     ```
+
+2. The system will run automatically until it reaches the designated number and will output how many tries it took to get to it.
