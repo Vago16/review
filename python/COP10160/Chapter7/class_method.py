@@ -10,10 +10,23 @@ class WebBrowser:
 >>> chrome.clear_history()
 >>> chrome.history
 ['example3.net']
+
+>>> firefox = WebBrowser("www.org")
+>>> firefox.geo_coordinates
+{'lat': -4.764813, 'lng': 16.131331}
+
+>>> WebBrowser.change_geo_coordinates({"lat": 31, "lng": 123})
+>>> firefox.geo_coordinates
+{'lat': 31, 'lng': 123}
+>>> WebBrowser.change_geo_coordinates({"lat": 31, "lng": 190})
+Invalid value for longitude. Should be within the range from -180 to 180 degrees.
+>>> WebBrowser.change_geo_coordinates({"lat": -100, "lng": 123})
+Invalid value for latitude. Should be within the range from -90 to 90 degrees.
 >>>
 '''
     number_of_web_browsers=0
     connected=True
+    geo_coordinates = {"lat": -4.764813, "lng": 16.131331 }
 #initializes a browser
     def __init__(self, page):
         self.history =[page]
@@ -36,6 +49,19 @@ class WebBrowser:
         instance.is_incognito=True
         instance.history=[]
         return instance
+#changes coordinates when called, takes the geo_coordinates parameter, which is a dict
+#calling change_geo_coordinates on class will change geo_coordinates for all instances of the class
+    @classmethod
+    def change_geo_coordinates(cls, new_coordinates):
+        if new_coordinates["lat"] > 90 or new_coordinates["lat"] < -90:
+            print("Invalid value for latitude. Should be within the"
+                  " range from -90 to 90 degrees.")
+            return None
+        if new_coordinates["lng"] > 180 or new_coordinates["lng"] < -180:
+            print("Invalid value for longitude. Should be within the"
+                  " range from -180 to 180 degrees.")
+            return None
+        cls.geo_coordinates = new_coordinates
 
 chrome = WebBrowser.with_incognito("shady-website.com")
 print(chrome.is_incognito)
